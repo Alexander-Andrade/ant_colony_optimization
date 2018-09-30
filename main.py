@@ -82,6 +82,16 @@ def init_pheromones():
     pheromones[N_ROWS-1][:, Direction.UP.value] = 0
     return pheromones
 
+def next_direction(ant, pheromone_map):
+    dir_probs = {}
+    dir_probs[Direction.UP] = transition_probability(ant.pos, ant.direction, Direction.UP, pheromone_map)
+    dir_probs[Direction.RIGHT] = transition_probability(ant.pos, ant.direction, Direction.RIGHT, pheromone_map)
+    dir_probs[Direction.DOWN] = transition_probability(ant.pos, ant.direction, Direction.DOWN, pheromone_map)
+    dir_probs[Direction.LEFT] = transition_probability(ant.pos, ant.direction, Direction.LEFT, pheromone_map)
+    return max(dir_probs, key=dir_probs.get)
+    
+    
+    
 # init pheromone_map
 pheromone_map = init_pheromones()
 
