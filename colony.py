@@ -17,7 +17,7 @@ class Colony:
                                 pheromone_importance=0.9)
             self.ants.append(ant)
 
-    def find_target(self, target_pos, max_iter, render_map, way_no):
+    def find_target(self, target_pos, max_iter=500000):
         best_way = None
         n_iter = 0
         way_counter = 0
@@ -31,11 +31,7 @@ class Colony:
                     if best_way is None:
                         best_way = ant.motion.path
                     ant.motion.return_to_colony(len(best_way))
-                    # if way_no == way_counter:
-                    #     render_map()
-                    #     return best_way, n_iter
                     way_counter += 1
-                    # print("ways: {0}, best way length: {1}, iter: {2}".format(way_counter, len(best_way), n_iter))
             n_iter += 1
             if not iter_ways:
                 continue

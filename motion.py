@@ -3,6 +3,7 @@ from transition import Transition
 import random
 import numpy as np
 
+
 class Motion:
 
     def __init__(self, pheromone_map, ant, direction_distr, pheromone_importance=0.5, length_importance=0.5):

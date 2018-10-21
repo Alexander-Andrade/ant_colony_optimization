@@ -1,9 +1,10 @@
 from direction import Direction
 import numpy as np
 
+
 class PheromoneMap:
 
-    def __init__(self, n_rows, n_cols, pheromone_min, evaporation_speed=0.01, update_coef=1, cell_connectivity=4):
+    def __init__(self, n_rows, n_cols, pheromone_min=0.03, evaporation_speed=0.002, update_coef=5, cell_connectivity=4):
         self.n_rows = n_rows
         self.n_cols = n_cols
         self.cell_connectivity = cell_connectivity
