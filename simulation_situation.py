@@ -38,6 +38,7 @@ class SimulationSituation:
         self.map_size = map_size
         self.n_agents = n_agents
         self.situation = []
+        self.pool = Pool(len(self.loads))
 
     def for_time_test(self):
         for load, destination in zip(self.loads, self.destinations):
@@ -57,8 +58,7 @@ class SimulationSituation:
         return task.perform()
 
     def perform(self):
-        pool = Pool(len(self.loads))
-        pathes = pool.map(SimulationSituation.perform_situation, self.situation)
+        pathes = self.pool.map(SimulationSituation.perform_situation, self.situation)
 
         for task, path in zip(self.situation, pathes):
             task.path = path
