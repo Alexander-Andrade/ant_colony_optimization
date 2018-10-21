@@ -14,18 +14,18 @@ class AgentTask:
         self.map_size = map_size
         self.path = []
 
-    def perform(self, max_iter=1000):
+    def perform(self):
         whole_path = []
         pheromone_map = PheromoneMap(n_rows=self.map_size[0],
                                      n_cols=self.map_size[1])
         colony = Colony(pos=self.agent_pos, pheromone_map=pheromone_map)
-        path, n_iter = colony.find_target(self.load_pos, max_iter=max_iter)
+        path, n_iter = colony.find_target(self.load_pos)
         whole_path = path
 
         pheromone_map = PheromoneMap(n_rows=self.map_size[0],
                                      n_cols=self.map_size[1])
         colony = Colony(pos=self.load_pos, pheromone_map=pheromone_map)
-        path, n_iter = colony.find_target(self.destination_pos, max_iter=max_iter)
+        path, n_iter = colony.find_target(self.destination_pos)
         whole_path += path
         return whole_path
 
@@ -64,3 +64,4 @@ class SimulationSituation:
             task.path = path
 
         return self.situation
+

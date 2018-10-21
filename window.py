@@ -10,11 +10,10 @@ class Window:
 
     def __init__(self, greed_size):
         self.root = Tk()
-
+        self.greed_size = greed_size
         self.canvas_frame = ttk.Frame(self.root)
         self.canvas = Canvas(self.canvas_frame, height=800, width=800)
         self.canvas.pack()
-        self.grid = self.draw_grid(greed_size)
         self.canvas_frame.pack(side=LEFT)
 
         # self.control_frame = ttk.Frame(self.root)
@@ -24,6 +23,7 @@ class Window:
         # self.pheromone_map_text = []
 
     def render_simulation_situation(self, simulation_situation):
+        self.grid = self.draw_grid(self.greed_size)
         colors = ['olive drab', 'brown3', 'blue4', 'orange', 'maroon', 'tomato']
         for task, color in zip(simulation_situation, colors):
             self.draw_label(task.agent_pos, shape='rect', color='green')
@@ -31,13 +31,11 @@ class Window:
             self.draw_label(task.destination_pos, shape='circ', color='blue')
             self.draw_path(path=task.path, color=color)
 
-    def visualize_colony(self, colony):
-        path, n_iter = colony.find_target(target_pos=(20, 20))
-        self.draw_label((0, 0), shape='rect', color='green')
-        self.draw_label((20, 20), shape='rect', color='red')
-        if path is not None:
-            self.draw_path(path)
-            # self.draw_pheromone_map(colony.pheromone_map)
+    def visualize_path_search(self, colony_pos, target_pos, path):
+        self.grid = self.draw_grid(self.greed_size)
+        self.draw_label(colony_pos, shape='rect', color='green')
+        self.draw_label(target_pos, shape='rect', color='red')
+        self.draw_path(path, color='black')
 
     def draw_label(self, pos, shape, color):
         p1_x = pos[0] * Window.CELL_SIZE + Window.CANVAS_OFFSET

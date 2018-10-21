@@ -37,4 +37,4 @@ class PheromoneMap:
         iter_to = path_len - 1
         for i in range(iter_to):
             next_point = path[i+1]
-            self.map[path[i].pos][next_point.direction.value] += (best_len / path_len) * self.update_coef
+            self.map[path[i].pos][next_point.direction.value] += (best_len / path_len) * self.update_coef * next_point.probability
