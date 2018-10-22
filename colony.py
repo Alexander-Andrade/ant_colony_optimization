@@ -7,7 +7,7 @@ import math
 
 class Colony:
 
-    def __init__(self, pheromone_map, pos=(0, 0), size=100):
+    def __init__(self, pheromone_map, pos=(0, 0), size=200):
         self.pos = pos
         self.pheromone_map = pheromone_map
         self.ants = []
