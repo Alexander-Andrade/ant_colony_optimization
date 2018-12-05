@@ -2,6 +2,10 @@ from direction import Direction
 import numpy as np
 
 
+# феромонная карта - трехмерный массив
+# x, y - координаты ячейки
+# z - массив со значениями феромона, в зависимости от направления
+# муравья, находящегося в ячейке
 class PheromoneMap:
 
     def __init__(self, n_rows, n_cols, pheromone_min=0.03, evaporation_speed=0.002, update_coef=5, cell_connectivity=4):

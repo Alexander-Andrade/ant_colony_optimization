@@ -5,6 +5,8 @@ from multiprocessing import Pool
 import math
 
 
+# задание муравью на нахождение пути до нагрузки
+# и нахождении пути от нагрузки до конечной точки
 class AgentTask:
 
     def __init__(self, agent_pos, load_pos, destination_pos, map_size, proximity_to_standard=None,
@@ -51,6 +53,10 @@ class AgentTask:
         return whole_path
 
 
+# имитационная ситуация
+# задаются позиции нагрузок
+# позиции конечных точек
+# и случайным образом назначаются задачи муравьям
 class SimulationSituation:
 
     def __init__(self, loads, destinations, map_size, colony_size=None, proximity_to_standard=None, iter_max=None):

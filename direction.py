@@ -1,6 +1,7 @@
 from enum import Enum
 
 
+# возможные направления движения муравья из ячейки
 class Direction(Enum):
     UP = 0
     RIGHT = 1
