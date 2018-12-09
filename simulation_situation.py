@@ -59,7 +59,7 @@ class AgentTask:
 # и случайным образом назначаются задачи муравьям
 class SimulationSituation:
 
-    def __init__(self, loads, destinations, map_size, colony_size=None, proximity_to_standard=None, iter_max=None):
+    def __init__(self, loads, destinations, map_size, colony_size, proximity_to_standard=None, iter_max=None):
         self.loads = loads
         self.destinations = destinations
         self.map_size = map_size
@@ -70,22 +70,10 @@ class SimulationSituation:
         self.pool = Pool(len(self.loads))
         self.success = True
 
-    def for_time_test(self):
+    def generate(self):
         for load, destination in zip(self.loads, self.destinations):
             agent_x = math.floor(random.uniform(0, self.map_size[0]))
             agent_y = math.floor(random.uniform(0, self.map_size[1]))
-            self.situation.append(AgentTask(agent_pos=(agent_x, agent_y),
-                                            load_pos=load,
-                                            destination_pos=destination,
-                                            map_size=self.map_size,
-                                            proximity_to_standard=self.proximity_to_standard))
-        return self.situation
-
-    def for_resources_test(self):
-        for load, destination in zip(self.loads, self.destinations):
-            agent_x = math.floor(random.uniform(0, self.map_size[0]))
-            agent_y = math.floor(random.uniform(0, self.map_size[1]))
-
             self.situation.append(AgentTask(agent_pos=(agent_x, agent_y),
                                             load_pos=load,
                                             destination_pos=destination,
@@ -94,6 +82,10 @@ class SimulationSituation:
                                             iter_max=self.iter_max,
                                             proximity_to_standard=self.proximity_to_standard))
         return self.situation
+
+    def print_situation(self):
+        for task in self.situation:
+            print("robot: {0} load: {1} destination: {2}".format(task.agent_pos, task.load_pos, task.destination_pos))
 
     @staticmethod
     def perform_situation(task):
